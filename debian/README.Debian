@@ -1,0 +1,11 @@
+ProxyChains-ng (proxychains4) for Debian
+========================================
+
+To ensure co-existence with legacy proxychains3, the configuration file
+of proxychains4 is installed as /etc/proxychains4.conf. It has a
+lower priority than /etc/proxychains.conf.
+
+Proxychains4 should work with the config of old proxychains3. However,
+if you find any regressions, please file a bug against proxychains4 package.
+
+ -- Boyuan Yang <073plan@gmail.com>  Wed, 27 Sep 2017 18:00:21 +0800

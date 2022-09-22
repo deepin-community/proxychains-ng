@@ -1,0 +1,53 @@
+Source: proxychains-ng
+Section: net
+Priority: optional
+Maintainer: Boyuan Yang <byang@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-exec,
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Homepage: https://github.com/rofl0r/proxychains-ng
+Vcs-Git: https://salsa.debian.org/debian/proxychains-ng.git
+Vcs-Browser: https://salsa.debian.org/debian/proxychains-ng
+
+Package: libproxychains4
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: runtime shared library for proxychains-ng
+ Proxychains is a UNIX program, that hooks network-related libc functions
+ in dynamically linked programs via a preloaded DLL (dlsym(), LD_PRELOAD)
+ and redirects the connections through SOCKS4a/5 or HTTP proxies.
+ It supports TCP only (no UDP/ICMP etc).
+ .
+ This project, proxychains-ng, is the continuation of the unmaintained
+ proxychains project (known as proxychains package in Debian).
+ .
+ This package provides the runtime shared library used by proxychains-ng
+ program.
+
+Package: proxychains4
+Architecture: any
+Provides:
+ proxychains,
+ proxychains-ng,
+Breaks:
+ proxychains (<< 3.1-8),
+Replaces:
+ proxychains,
+Depends:
+ libproxychains4 (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: redirect connections through socks/http proxies (proxychains-ng)
+ Proxychains is a UNIX program, that hooks network-related libc functions
+ in dynamically linked programs via a preloaded DLL (dlsym(), LD_PRELOAD)
+ and redirects the connections through SOCKS4a/5 or HTTP proxies.
+ It supports TCP only (no UDP/ICMP etc).
+ .
+ This project, proxychains-ng, is the continuation of the unmaintained
+ proxychains project (known as proxychains package in Debian).

@@ -1,0 +1,69 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Sun, 15 Aug 2021 13:21:32 -0400
+Subject: Install conffile as proxychains4.conf
+
+Forwarded: not-needed
+Last-Update: 2021-08-15
+
+In order to co-exist with old proxychains package, we
+will need to prevent conffile collision. The best solution
+in my mind is to use another name for conffile.
+
+With this patch, program will search for $SYSCONFDIR/proxychains4.conf
+and /etc/proxychains4.conf as a fallback. The conffile provided
+will be installed as /etc/proxychains4.conf.
+---
+ README       |  2 ++
+ src/common.c | 11 +++++++++++
+ src/common.h |  1 +
+ 3 files changed, 14 insertions(+)
+
+diff --git a/README b/README
+index f0383de..37b3769 100644
+--- a/README
++++ b/README
+@@ -198,8 +198,10 @@ proxychains looks for config file in following order:
+ 2)	./proxychains.conf
+ 3)	$(HOME)/.proxychains/proxychains.conf
+ 4)	$(sysconfdir)/proxychains.conf  **
++5)	$(sysconfdir)/proxychains4.conf *** 
+ 
+ ** usually /etc/proxychains.conf
++*** usually /etc/proxychains4.conf
+ 
+ Usage Example:
+ 
+diff --git a/src/common.c b/src/common.c
+index 1da1c45..d52c312 100644
+--- a/src/common.c
++++ b/src/common.c
+@@ -123,6 +123,17 @@ char *get_config_path(char* default_path, char* pbuf, size_t bufsize) {
+ 	if(check_path(path))
+ 		goto have;
+ 
++	// priority 6: $SYSCONFDIR/proxychains4.conf
++	path = SYSCONFDIR "/" PROXYCHAINS_CONF_FILE_FALLBACK;
++	if(check_path(path))
++		goto have;
++
++
++	// priority 7: /etc/proxychains4.conf
++	path = "/etc/" PROXYCHAINS_CONF_FILE_FALLBACK;
++	if(check_path(path))
++		goto have;
++
+ 	perror("couldnt find configuration file");
+ 	exit(1);
+ 
+diff --git a/src/common.h b/src/common.h
+index 91468bc..eaec390 100644
+--- a/src/common.h
++++ b/src/common.h
+@@ -4,6 +4,7 @@
+ #define PROXYCHAINS_CONF_FILE_ENV_VAR "PROXYCHAINS_CONF_FILE"
+ #define PROXYCHAINS_QUIET_MODE_ENV_VAR "PROXYCHAINS_QUIET_MODE"
+ #define PROXYCHAINS_CONF_FILE "proxychains.conf"
++#define PROXYCHAINS_CONF_FILE_FALLBACK "proxychains4.conf"
+ #define LOG_PREFIX "[proxychains] "
+ #ifndef SYSCONFDIR
+ #define SYSCONFDIR "/etc"

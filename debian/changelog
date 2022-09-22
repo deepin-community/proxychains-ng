@@ -1,0 +1,84 @@
+proxychains-ng (4.15-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/rules: Also export buildflags while building.
+  * debian/control: Bump to debhelper compat v13.
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Submit.
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 10 Sep 2021 16:50:57 -0400
+
+proxychains-ng (4.14-3) unstable; urgency=medium
+
+  * debian/proxychains4.1: Update .TH command line (title line)
+    to make it consistent with conventions from man-pages(7).
+  * debian/upstream/metadata: Add information about upstream
+    repository and issue tracker.
+
+ -- Boyuan Yang <byang@debian.org>  Sun, 05 Apr 2020 11:30:11 -0400
+
+proxychains-ng (4.14-2) unstable; urgency=medium
+
+  * debian/control: Bump Standards-Version to 4.5.0.
+  * debian/proxychains4.1: Clarify the configuration file search
+    priority in the man page.
+
+ -- Boyuan Yang <byang@debian.org>  Tue, 24 Mar 2020 11:27:00 -0400
+
+proxychains-ng (4.14-1) unstable; urgency=medium
+
+  * New upstream release 4.14.
+  * debian/patches: Drop all patches merged upstream.
+  * debian/control: Bump Standards-Version to 4.4.0.
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 11 Jul 2019 11:04:08 -0400
+
+proxychains-ng (4.13-4) unstable; urgency=medium
+
+  * Rebuild for Debian Buster.
+  * debian/patches: Backport upstream trunk commits till 2019-02-28.
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 28 Feb 2019 16:10:20 -0500
+
+proxychains-ng (4.13-3) unstable; urgency=medium
+
+  * debian/control: Make proxychains4 provides proxychains-ng.
+  * debian/control: Mention proxychains-ng in package description.
+
+ -- Boyuan Yang <byang@debian.org>  Tue, 09 Oct 2018 09:47:56 -0400
+
+proxychains-ng (4.13-2) unstable; urgency=medium
+
+  * debian/patches: Backport upstream patches till 2018-08-26.
+  * debian/control:
+    + Bump Standards-Version to 4.2.1.
+    + Update Maintainer field and use @debian.org email address.
+  * debian/rules: Avoid explicit invocation to dpkg-architecture.
+
+ -- Boyuan Yang <byang@debian.org>  Mon, 08 Oct 2018 14:49:12 -0400
+
+proxychains-ng (4.13-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop backported patches.
+  * Update man page for proxychains4.
+
+ -- Boyuan Yang <073plan@gmail.com>  Wed, 27 Jun 2018 11:18:48 +0800
+
+proxychains-ng (4.12-2) unstable; urgency=medium
+
+  * Backport more patches from upstream trunk.
+  * Bump Standards-Version to 4.1.4 (no changes needed).
+  * Bump debhelper compat to v11.
+  * d/rules: Use "dh_missing --fail-missing".
+  * d/control: Use Salsa repo in Vcs fields.
+  * Use Alternatives system to provide /usr/bin/proxychains.
+
+ -- Boyuan Yang <073plan@gmail.com>  Thu, 10 May 2018 14:13:12 +0800
+
+proxychains-ng (4.12-1) unstable; urgency=low
+
+  * Initial release. Closes: #823128
+
+ -- Boyuan Yang <073plan@gmail.com>  Wed, 27 Sep 2017 18:00:21 +0800
